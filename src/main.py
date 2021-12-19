@@ -19,7 +19,7 @@ import pylab as pl
 from mpl_toolkits.mplot3d import Axes3D
 import time
 import mdp
-#import tsne
+import tsne
 
 fw = 11
 fh = 8
@@ -254,16 +254,16 @@ for i in range(10):
     embeddedPhasePlot(lowDimS)
     
     ### alternately, use a non-parametric low-dimensionality embedding
-    #if tsne:
-    #    # Preprocess
-    #    lowishDimI,eI = computePCAmap(odim=50,transpo=True)
-    #    lowishDimS,eS = computePCAmap(odim=50)
-    #    
-    #    tsneI = tsne.tsne(lowishDimI, 2, 50, 20.0)
-    #    tsneI.tofile('tsneI' + str(int(10*time.clock()))+'.csv')
-    #    embedIndividualstsne(tsneI)
-    #    
-    #    tsneS = tsne.tsne(lowishDimS, 2, 50, 20.0)
-    #    tsneS.tofile('tsneS' + str(int(10*time.clock()))+'.csv')
-    #    embedSystemtsne(tsneS)
-    #    embeddedPhasePlottsne(tsneS)
+    if tsne:
+       # Preprocess
+       lowishDimI,eI = computePCAmap(odim=50,transpo=True)
+       lowishDimS,eS = computePCAmap(odim=50)
+
+       tsneI = tsne.tsne(lowishDimI, 2, 50, 20.0)
+       tsneI.tofile('tsneI' + str(int(10*time.clock()))+'.csv')
+       embedIndividualstsne(tsneI)
+
+       tsneS = tsne.tsne(lowishDimS, 2, 50, 20.0)
+       tsneS.tofile('tsneS' + str(int(10*time.clock()))+'.csv')
+       embedSystemtsne(tsneS)
+       embeddedPhasePlottsne(tsneS)
